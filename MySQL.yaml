@@ -32,7 +32,7 @@ spec:
         ports:
         - containerPort: 3306
         volumeMounts:
-        - name: wordpress-local-storage
+        - name: mysql-pvc
           mountPath: /var/lib/mysql
       volumes:
         - name: mysql-pvc
