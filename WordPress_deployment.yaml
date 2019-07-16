@@ -5,6 +5,7 @@ metadata:
   name: wordpress
   labels:
     app: wordpress
+    tier: frontend
 spec:
   ports:
     - port: 80
@@ -20,7 +21,8 @@ kind: Deployment
 metadata:
   name: wordpress-deployment
   labels:
-    app: mysql-wordpress-rs
+    app: wordpress
+    tier: frontend
 spec:
   replicas: 3
   template:
@@ -48,7 +50,9 @@ spec:
           volumeMounts:
             - name: wordpress-local-storage
               mountPath: /var/www/html
-      volumes:
-        - name: wordpress-local-storage
-          persistentVolumeClaim:
-            claimName: wordpress-mysql
+      # volumes:
+      #   - name: wordpress-local-storage
+      #     persistentVolumeClaim:
+      #       claimName: wordpress-mysql
+
+

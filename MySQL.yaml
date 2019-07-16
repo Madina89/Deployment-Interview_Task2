@@ -1,18 +1,21 @@
 apiVersion: extensions/v1beta1
 kind: ReplicaSet
 metadata:
-  name: mysql-wordpress-rs
+  name: mysql-rs
   labels:
-    app: mysql-wordpress-rs
+    app: wordpress
+    tier: mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql-rs-secret
+      app: wordpress
+      tier: mysql
   template:
     metadata:
       labels:
-        app: mysql-rs-secret
+        app: wordpress
+        tier: mysql
     spec:
       containers:
       - name: mysql
@@ -32,17 +35,17 @@ spec:
         - name: wordpress-local-storage
           mountPath: /var/lib/mysql
       volumes:
-        - name: wordpress-local-storage
+        - name: mysql-pvc
           persistentVolumeClaim:
-            claimName: wordpress-mysql
+            claimName: mysql-pvc
 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: wordpress-mysql
+  name: mysql-pvc
   labels:
-    name: mysql-wordpress-rs
+    name: mysql-pvc
 spec:
   accessModes:
     - ReadWriteOnce
