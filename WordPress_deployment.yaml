@@ -40,7 +40,7 @@ spec:
             - name: WORDPRESS_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: Madina
+                  name: mysecret
                   key: password
           ports:
             - containerPort: 80
