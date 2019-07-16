@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       labels:
-        app: runtime_stages
+        app: runtime_stage
     spec:
       containers:
       - name: nginx
