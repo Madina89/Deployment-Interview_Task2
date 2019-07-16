@@ -40,8 +40,8 @@ spec:
             - name: WORDPRESS_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysecret
-                  key: mysecret
+                  username: mysecret
+                  password: mysecret
           ports:
             - containerPort: 80
               name: wordpress
