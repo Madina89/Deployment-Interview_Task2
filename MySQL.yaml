@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: ReplicaSet
+metadata:
+  name: mysql-rs
+  labels:
+    app: mysql-rs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-rs-secret
+  template:
+    metadata:
+      labels:
+        app: mysql-rs-secret
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.6
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: password
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+        ports:
+        - containerPort: 3306
