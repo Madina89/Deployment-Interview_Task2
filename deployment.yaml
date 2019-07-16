@@ -22,5 +22,5 @@ spec:
         run: nginx-app
     spec:
       containers:
-      - image: nginx
+      - image: nginx:1.14.0
         name: nginx-app
