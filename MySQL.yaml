@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: ReplicaSet
 metadata:
-  name: mysql-rs
+  name: mysql-wordpress-rs
   labels:
-    app: mysql-rs
+    app: mysql-wordpress-rs
 spec:
   replicas: 1
   selector:
@@ -34,4 +34,18 @@ spec:
       volumes:
         - name: wordpress-local-storage
           persistentVolumeClaim:
-            claimName: wp-lv-claim
+            claimName: wordpress-mysql
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress-mysql
+  labels:
+    name: mysql-wordpress-rs
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi

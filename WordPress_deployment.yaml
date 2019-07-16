@@ -20,7 +20,7 @@ kind: Deployment
 metadata:
   name: wordpress-deployment
   labels:
-    app: wordpress-deployment
+    app: mysql-wordpress-rs
 spec:
   replicas: 3
   template:
@@ -51,4 +51,4 @@ spec:
       volumes:
         - name: wordpress-local-storage
           persistentVolumeClaim:
-            claimName: wp-lv-claim
+            claimName: wordpress-mysql
