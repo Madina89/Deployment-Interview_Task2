@@ -28,3 +28,10 @@ spec:
             port: 3306
         ports:
         - containerPort: 3306
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+        - name: wordpress-local-storage
+          persistentVolumeClaim:
+            claimName: wp-lv-claim

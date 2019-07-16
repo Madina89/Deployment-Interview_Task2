@@ -48,7 +48,7 @@ spec:
           volumeMounts:
             - name: wordpress-local-storage
               mountPath: /var/www/html
-      # volumes:
-      #   - name: wordpress-local-storage
-      #     persistentVolumeClaim:
-      #       claimName: wp-lv-claim
+      volumes:
+        - name: wordpress-local-storage
+          persistentVolumeClaim:
+            claimName: wp-lv-claim
