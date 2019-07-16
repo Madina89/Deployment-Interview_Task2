@@ -50,9 +50,24 @@ spec:
           volumeMounts:
             - name: wordpress-local-storage
               mountPath: /var/www/html
-      # volumes:
-      #   - name: wordpress-local-storage
-      #     persistentVolumeClaim:
-      #       claimName: wordpress-mysql
+      volumes:
+        - name: wordpress-pvc
+          persistentVolumeClaim:
+            claimName: wordpress-pvc
+
+---
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress-pvc
+  labels:
+    name: wordpress-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
 
 
