@@ -5,12 +5,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: runtime_stage=staging
+      app: runtime_stage
   replicas: 3
   template:
     metadata:
       labels:
-        app: runtime_stage=staging
+        app: runtime_stages
     spec:
       containers:
       - name: nginx
